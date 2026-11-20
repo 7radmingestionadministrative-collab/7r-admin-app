@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#082754" />
+  <meta name="description" content="7RAdmin par Reine Cagnion — Administratif, démarches en ligne, seniors, aidants et TPE sur le Bassin de Thau et à distance." />
+  <title>7RAdmin — Reine Cagnion</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/x-icon" href="logo seul.ico" />
+  <link rel="apple-touch-icon" href="logo seul.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy: #082754;
+      --navy-dark: #051938;
+      --teal: #00a69c;
+      --teal-soft: #e6f7f6;
+      --bg: #f4f7fa;
+      --card: #ffffff;
+      --text: #162436;
+      --muted: #55677d;
+      --border: #dfe7f0;
+      --radius: 18px;
+      --shadow: 0 8px 24px rgba(8, 39, 84, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding-bottom: 88px;
+      line-height: 1.5;
+    }
+
+    h1, h2, h3, .brand-title {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      margin: 0;
+      color: var(--navy);
+    }
+
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 65%, #0b5a78 100%);
+      color: #fff;
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: 0 4px 16px rgba(8, 39, 84, 0.18);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 12px;
+      padding: 4px;
+    }
+
+    .brand-title {
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .brand-sub {
+      font-size: 0.74rem;
+      color: #cdeff0;
+    }
+
+    .install-btn {
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .install-btn[hidden] {
+      display: none;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .view {
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      background: linear-gradient(160deg, #ffffff 0%, var(--teal-soft) 100%);
+      border-color: #c8ece9;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--teal-soft);
+      color: #02736c;
+      font-weight: 600;
+      font-size: 0.76rem;
+      padding: 5px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .hero-card h1 {
+      font-size: 1.32rem;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .hero-card h1 span {
+      color: var(--teal);
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 15px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: var(--teal);
+      color: #fff;
+    }
+
+    .btn-outline {
+      background: #fff;
+      color: var(--navy);
+      border: 1px solid #c7d4e3;
+    }
+
+    .service-item {
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .service-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .service-item h3 {
+      font-size: 0.98rem;
+      margin-bottom: 3px;
+    }
+
+    .info-tip {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border-left: 4px solid var(--teal);
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .sap-box {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid #bce4e0;
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+
+    label {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+      margin-top: 10px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #c7d4e3;
+      border-radius: 11px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: #fff;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid rgba(0, 166, 156, 0.35);
+      border-color: var(--teal);
+    }
+
+    .sim-result {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      background: var(--teal-soft);
+      border: 1px solid #b5e5e1;
+    }
+
+    .sim-amount {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-top: 4px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+      z-index: 30;
+      box-shadow: 0 -4px 16px rgba(8, 39, 84, 0.06);
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      padding: 6px 2px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .nav-btn.active {
+      color: var(--teal);
+    }
+
+    .nav-icon {
+      font-size: 1.15rem;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="brand">
+      <img src="logo seul.png" alt="Logo 7RAdmin" />
+      <div>
+        <div class="brand-title">7RAdmin</div>
+        <div class="brand-sub">Reine Cagnion • Bassin de Thau</div>
+      </div>
+    </div>
+    <button id="installBtn" class="install-btn" hidden>Installer</button>
+  </header>
+
+  <main class="container">
+
+    <!-- ONGLET 1 : ACCUEIL -->
+    <section id="view-accueil" class="view active">
+      <div class="card hero-card">
+        <span class="badge">Bassin de Thau • À domicile ou à distance</span>
+        <h1>Votre administratif et vos démarches en ligne, <span>en toute sérénité.</span></h1>
+        <p class="muted">
+          Bonjour, je suis <strong>Reine Cagnion</strong>. Avec <strong>7RAdmin</strong>, j'accompagne avec bienveillance et méthode les <strong>particuliers, seniors et aidants familiaux</strong>, ainsi que les <strong>artisans, indépendants et TPE</strong>.
+        </p>
+
+        <div class="sap-box">
+          <strong>Services à la Personne (SAP) :</strong> démarche en cours d'instruction ; dès validation officielle, les particuliers éligibles pourront bénéficier du <strong>crédit d'impôt de 50 %</strong> sur les prestations à domicile.
+        </div>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="tel:+33613032281">Appeler le 06 13 03 22 81</a>
+          <button class="btn btn-secondary" onclick="switchTab('contact')">Demander un devis</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Pourquoi 7RAdmin ?</h2>
+        <div class="service-item">
+          <h3>Accompagnement humain et patient</h3>
+          <p class="muted">À votre rythme, sans jargon technique, avec une interlocutrice unique.</p>
+        </div>
+        <div class="service-item">
+          <h3>Confidentialité et souplesse</h3>
+          <p class="muted">Respect strict de vos documents, à domicile sur le Bassin de Thau ou à distance.</p>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn-outline" href="https://7radmingestionadministrative-collab.github.io/7r-admin/" target="_blank" rel="noopener">Voir le site web complet</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ONGLET 2 : SERVICES -->
+    <section id="view-services" class="view">
+      <div class="card">
+        <h2>Particuliers, seniors &amp; aidants</h2>
+        <div class="service-item">
+          <h3>Vie courante &amp; démarches</h3>
+          <p class="muted">Courriers, tri et classement papier/numérique, résiliations, changements d'adresse, démarches en ligne (ANTS, Ameli, CAF, retraite), aide matérielle aux dossiers d'aides et initiation numérique douce.</p>
+        </div>
+        <div class="service-item">
+          <h3>Seniors &amp; proches aidants</h3>
+          <p class="muted">Accompagnement autour des dossiers d'autonomie et d'allocations (APA, PAP, MaPrimeAdapt', ASPA, ASI, APL/ALS, AJPA, droit au répit), caisses de retraite et suivi régulier du courrier.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Artisans, indépendants &amp; TPE</h2>
+        <div class="service-item">
+          <h3>Gestion courante &amp; organisation</h3>
+          <p class="muted">Saisie de devis, facturation, suivi des règlements, relances amiables, classement numérique, préparation des pièces pour l'expert-comptable et courriers/dossiers.</p>
+        </div>
+        <div class="info-tip">
+          <strong>Cadre d'intervention :</strong> activité libérale non réglementée (micro-entreprise, régime micro-BNC). Ne sont pas réalisées : déclarations fiscales (impôts), conseil fiscal ou juridique réglementé, tenue comptable et permanence téléphonique.
+        </div>
+      </div>
+    </section>
+
+    <!-- ONGLET 3 : SIMULATEUR -->
+    <section id="view-simulateur" class="view">
+      <div class="card">
+        <h2>Estimation indicative</h2>
+        <p class="muted">
+          Estimez un ordre de grandeur pour une prestation à domicile (le crédit d'impôt de 50 % SAP s'applique sous réserve de validation officielle de la démarche SAP, d'éligibilité et des plafonds légaux).
+        </p>
+
+        <label for="hoursInput">Nombre d'heures estimées</label>
+        <input id="hoursInput" type="number" min="0.5" max="200" step="0.5" value="3" />
+
+        <label for="rateInput">Tarif horaire indicatif (€ / h)</label>
+        <input id="rateInput" type="number" min="10" max="150" step="1" value="35" />
+
+        <div class="sim-result">
+          <div class="muted">Montant estimé : <strong id="grossTotal">105,00 €</strong></div>
+          <div class="muted">Crédit d'impôt SAP indicatif (50 %) : <strong id="taxCredit">52,50 €</strong></div>
+          <div class="sim-amount" id="netTotal">Reste à charge estimé : 52,50 €</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ONGLET 4 : CONTACT -->
+    <section id="view-contact" class="view">
+      <div class="card">
+        <h2>Contacter Reine Cagnion</h2>
+        <p class="muted">
+          Téléphone : <strong>06 13 03 22 81</strong><br />
+          E-mail : <strong>7Radmin.gestionadministrative@gmail.com</strong>
+        </p>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="tel:+33613032281">Appeler</a>
+          <a class="btn btn-secondary" href="mailto:7Radmin.gestionadministrative@gmail.com">Envoyer un e-mail</a>
+        </div>
+
+        <form id="contactForm">
+          <label for="clientName">Votre nom et prénom</label>
+          <input id="clientName" type="text" required placeholder="Ex. : Jean Martin" />
+
+          <label for="clientPhone">Votre téléphone ou e-mail</label>
+          <input id="clientPhone" type="text" required placeholder="Ex. : 06 00 00 00 00" />
+
+          <label for="clientNeed">Votre besoin</label>
+          <select id="clientNeed">
+            <option value="Vie courante / courriers / démarches en ligne">Vie courante / courriers / démarches en ligne</option>
+            <option value="Seniors / proches aidants / aides sociales">Seniors / proches aidants / aides sociales</option>
+            <option value="Aide informatique / outils numériques">Aide informatique / outils numériques</option>
+            <option value="Artisans / indépendants / TPE">Artisans / indépendants / TPE</option>
+          </select>
+
+          <label for="clientMsg">Précisions (commune, disponibilités...)</label>
+          <textarea id="clientMsg" rows="3" placeholder="Ex. : à Sète ou Balaruc, disponible plutôt le matin..."></textarea>
+
+          <div class="btn-row">
+            <button type="submit" class="btn btn-primary">Ouvrir mon e-mail pré-rempli</button>
+          </div>
+        </form>
+
+        <div id="formFeedback" class="info-tip" style="display:none;"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <nav class="bottom-nav" aria-label="Navigation principale">
+    <button class="nav-btn active" data-tab="accueil" onclick="switchTab('accueil')">
+      <span class="nav-icon">🏠</span>
+      <span>Accueil</span>
+    </button>
+    <button class="nav-btn" data-tab="services" onclick="switchTab('services')">
+      <span class="nav-icon">📋</span>
+      <span>Services</span>
+    </button>
+    <button class="nav-btn" data-tab="simulateur" onclick="switchTab('simulateur')">
+      <span class="nav-icon">🧮</span>
+      <span>Estimation</span>
+    </button>
+    <button class="nav-btn" data-tab="contact" onclick="switchTab('contact')">
+      <span class="nav-icon">✉️</span>
+      <span>Contact</span>
+    </button>
+  </nav>
+
+  <script>
+    function switchTab(tabName) {
+      document.querySelectorAll('.view').forEach((v) => v.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach((b) => b.classList.remove('active'));
+
+      const targetView = document.getElementById('view-' + tabName);
+      const targetBtn = document.querySelector('.nav-btn[data-tab="' + tabName + '"]');
+      if (targetView) targetView.classList.add('active');
+      if (targetBtn) targetBtn.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const hoursInput = document.getElementById('hoursInput');
+    const rateInput = document.getElementById('rateInput');
+    const grossTotal = document.getElementById('grossTotal');
+    const taxCredit = document.getElementById('taxCredit');
+    const netTotal = document.getElementById('netTotal');
+
+    function formatEur(val) {
+      return val.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+    }
+
+    function updateSim() {
+      const h = Math.max(0, parseFloat(hoursInput.value) || 0);
+      const r = Math.max(0, parseFloat(rateInput.value) || 0);
+      const gross = h * r;
+      const credit = gross * 0.5;
+      const net = gross - credit;
+
+      grossTotal.textContent = formatEur(gross);
+      taxCredit.textContent = formatEur(credit);
+      netTotal.textContent = 'Reste à charge estimé : ' + formatEur(net);
+    }
+
+    hoursInput.addEventListener('input', updateSim);
+    rateInput.addEventListener('input', updateSim);
+    updateSim();
+
+    const contactForm = document.getElementById('contactForm');
+    const formFeedback = document.getElementById('formFeedback');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('clientName').value.trim();
+      const phone = document.getElementById('clientPhone').value.trim();
+      const need = document.getElementById('clientNeed').value;
+      const msg = document.getElementById('clientMsg').value.trim();
+
+      const subject = encodeURIComponent('Demande 7RAdmin — ' + need + ' (' + name + ')');
+      const body = encodeURIComponent(
+        'Bonjour Reine,\n\n' +
+        'Nom : ' + name + '\n' +
+        'Contact : ' + phone + '\n' +
+        'Besoin : ' + need + '\n\n' +
+        'Message :\n' + (msg || 'Merci de me recontacter.')
+      );
+
+      window.location.href = 'mailto:7Radmin.gestionadministrative@gmail.com?subject=' + subject + '&body=' + body;
+
+      formFeedback.style.display = 'block';
+      formFeedback.innerHTML =
+        'Votre messagerie s\'ouvre avec le message préparé pour <strong>7Radmin.gestionadministrative@gmail.com</strong>. Vous pouvez aussi appeler directement le <strong>06 13 03 22 81</strong>.';
+    });
+
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.hidden = false;
+    });
+
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.hidden = true;
+    });
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
