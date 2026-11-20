@@ -543,8 +543,15 @@
         'Votre messagerie s\'ouvre avec le message préparé pour <strong>7Radmin.gestionadministrative@gmail.com</strong>. Vous pouvez aussi appeler directement le <strong>06 13 03 22 81</strong>.';
     });
 
+    // Gestion installation Android + guide iPhone/iPad (Safari)
     let deferredPrompt;
     const installBtn = document.getElementById('installBtn');
+    const isIos = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+    if (isIos && !isStandalone) {
+      installBtn.hidden = false;
+    }
 
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
@@ -553,11 +560,19 @@
     });
 
     installBtn.addEventListener('click', async () => {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      deferredPrompt = null;
-      installBtn.hidden = true;
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        installBtn.hidden = true;
+      } else if (isIos) {
+        alert(
+          "Pour installer l'application 7RAdmin sur votre iPhone ou iPad :\n\n" +
+          "1. Ouvrez bien cette page dans Safari.\n" +
+          "2. Appuyez sur l'icône Partager en bas de l'écran (carré avec une flèche vers le haut).\n" +
+          "3. Faites défiler et appuyez sur « Sur l'écran d'accueil », puis « Ajouter »."
+        );
+      }
     });
 
     if ('serviceWorker' in navigator) {
